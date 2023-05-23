@@ -12,9 +12,16 @@ class FavoritesListVC: UIViewController {
     
     // MARK: - Outlets
     
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var gamesTableView: UITableView!
     
+    lazy var noFavouritesLbl: UILabel = {
+        let label = UILabel()
+        label.text = "There is no favourites found."
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.textColor = UIColor.black
+        return label
+    }()
     // MARK: - Properties
     
     var viewModel: FavoritesListViewModel!
@@ -28,9 +35,7 @@ class FavoritesListVC: UIViewController {
         
         // Set up the table view
         setupGamesTableView()
-        
-        // Set up the search bar
-        setSearchBar()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,11 +69,6 @@ class FavoritesListVC: UIViewController {
         gamesTableView.delegate = self
     }
     
-    /// Sets up the search bar.
-    private func setSearchBar() {
-        searchBar.delegate = self
-        searchBar.autocapitalizationType = .none
-    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -88,29 +88,5 @@ extension FavoritesListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         return viewModel.deleteGame(at: indexPath)
-    }
-}
-
-// MARK: - UISearchBarDelegate
-
-extension FavoritesListVC: UISearchBarDelegate {
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        // Clear the search bar and end editing
-        searchBar.text = nil
-        searchBar.resignFirstResponder()
-        
-        // Clear the search results
-        viewModel.gamesList = viewModel.allGamesList
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // Check if the search text has more than 3 characters
-        if !searchText.isEmpty {
-            // Perform the search
-            viewModel.gamesList = viewModel.allGamesList.filter({ ($0.name ?? "").lowercased().contains(searchText.lowercased()) })
-        } else if searchText.isEmpty {
-            // Clear the search text and show all games
-            viewModel.gamesList = viewModel.allGamesList
-        }
     }
 }

@@ -7,6 +7,27 @@
 
 import UIKit
 
+/**
+ The FavoritesListViewModel class is responsible for providing data and handling business logic for the favorites list screen. It communicates with the FavoritesListVC view controller to update the UI and respond to user interactions.
+
+ Properties:
+ hostVC: The weak reference to the view controller that owns the view model.
+ gamesList: The list of games to be displayed in the favorites list.
+ allGamesList: The list of all favorited games.
+ Initializer:
+ The initializer takes an optional parameter for the host view controller. It sets the initial values and assigns the provided dependencies.
+ Methods:
+ getFavoritedGames(): Fetches the favorited games from Core Data and updates the gamesList and allGamesList properties.
+ showNoDataLbl(): Adds and configures the "No Favorites" label as a subview of the table view.
+ hideNoDataLbl(): Removes the "No Favorites" label from the table view.
+ numberOfCells(): Returns the number of cells in the games list.
+ cellForRow(at:): Returns the configured cell for the specified index path.
+ didSelectCell(at:): Handles the selection of a cell at the specified index path.
+ deleteGame(at:): Deletes a game from the favorites list at the specified index path. It presents a delete confirmation alert and updates the allGamesList, gamesList, and Core Data accordingly.
+ openGameDetail(at:): Opens the game details screen for the selected game at the specified index path.
+ Overall, the FavoritesListViewModel class acts as an intermediary between the view controller and the data source, providing the necessary data and functionality to populate and interact with the favorites list screen.
+ */
+
 /// The view model for the favorites list screen.
 class FavoritesListViewModel {
 
@@ -39,6 +60,25 @@ class FavoritesListViewModel {
         gamesList = allGamesList
     }
 
+    /// Shows the "No Data" label in the table view.
+    func showNoDataLbl() {
+        if let hostVC = hostVC {
+            hostVC.gamesTableView.addSubview(hostVC.noFavouritesLbl)
+            hostVC.noFavouritesLbl.translatesAutoresizingMaskIntoConstraints = false
+            hostVC.noFavouritesLbl.centerYAnchor
+                .constraint(equalTo:
+                                hostVC.gamesTableView.centerYAnchor).isActive = true
+            hostVC.noFavouritesLbl.centerXAnchor
+                .constraint(equalTo:
+                                hostVC.gamesTableView.centerXAnchor).isActive = true
+        }
+    }
+
+    /// Hides the "No Data" label from the table view.
+    func hideNoDataLbl() {
+        hostVC?.noFavouritesLbl.removeFromSuperview()
+    }
+
     /// Returns the number of cells in the games list.
     func numberOfCells() -> Int {
         return gamesList.count
@@ -66,6 +106,7 @@ class FavoritesListViewModel {
 
     /// Deletes a game from the favorites list.
     /// - Parameter indexPath: The index path of the game to be deleted.
+    /// - Returns: The swipe actions configuration for the delete action.
     func deleteGame(at indexPath: IndexPath) -> UISwipeActionsConfiguration {
         var game = gamesList[indexPath.row]
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completion) in
@@ -110,3 +151,4 @@ class FavoritesListViewModel {
         }
     }
 }
+

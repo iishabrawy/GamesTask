@@ -7,6 +7,42 @@
 
 import UIKit
 
+/**
+ The GameDetailsVC class represents the view controller responsible for displaying game details. It manages the UI elements, user interactions, and communicates with the GameDetailsViewModel to retrieve and update data.
+
+ Outlets:
+ gameImage: UIImageView for displaying the game's image.
+ indicator: UIActivityIndicatorView for showing loading activity.
+ gameNameLbl: UILabel for displaying the game's name.
+ gameDescriptionLbl: UILabel for displaying the game's description.
+ readMoreBtn: UIButton for expanding the game's description.
+ redditView: UIView for opening the game's Reddit page.
+ websiteView: UIView for opening the game's website.
+ columnsStack: UIStackView for managing the layout of the view.
+ Properties:
+ viewModel: Instance of GameDetailsViewModel to handle the business logic and data for the view.
+ gameID: The ID of the game for which the details are being displayed.
+ isFavorite: A boolean indicating whether the game is favorited or not.
+ favoriteButton: UIBarButtonItem representing the favorite button in the navigation bar.
+ Initialization:
+ init(gameID:): Initializes the view controller with a game ID.
+ required init?(coder:): Required initializer not implemented.
+ View Lifecycle:
+ viewDidLoad(): Called after the view controller's view is loaded into memory. Sets up the view model, navigation items, gesture recognizers, and layout.
+ traitCollectionDidChange(_:): Called when the view controller's trait collection changes. Adjusts the layout based on the new trait collection.
+ Setup:
+ setupNavigationItems(): Configures the navigation items, including the favorite button.
+ updateFavoriteButton(): Updates the title of the favorite button based on whether the game is favorited or not.
+ configureGestureRecognizers(): Configures the tap gesture recognizers for the Reddit and website views.
+ changeLayoutFromOneColumnToTwoColumns(): Changes the layout of the view based on the device's orientation.
+ Actions:
+ openReddit(): Handles the tap gesture on the Reddit view by opening the game's Reddit page if it exists and the URL is valid.
+ openWebsite(): Handles the tap gesture on the website view by opening the game's website if it exists and the URL is valid.
+ favoriteButtonTapped(): Handles the tap on the favorite button by toggling the game's favorite status and updating the favorite button title.
+ readMoreButtonTapped(_:): Handles the tap on the read more button by requesting to load the full game description.
+ The GameDetailsVC class manages the presentation and user interaction of the game details screen, allowing users to view the game's information, toggle its favorite status, and navigate to related external links.
+ */
+
 class GameDetailsVC: UIViewController {
 
     // MARK: - Outlets

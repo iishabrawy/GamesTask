@@ -7,6 +7,24 @@
 
 import UIKit
 
+/**
+ The GameDetailsViewModel class represents the view model for the game details screen. It handles the business logic, data retrieval, and UI updates related to displaying game details.
+
+ Properties:
+ hostVC: The view controller that owns the view model.
+ networkLayer: The network layer used for making API requests.
+ gameDetailsEndPoint: The endpoint for fetching game data.
+ gameInfo: The game information retrieved from the API.
+ isFetching: A flag indicating whether data is currently being fetched.
+ Initialization:
+ init(host:networkLayer:gameDetailsEndPoint:): Initializes the view model with the provided dependencies. It sets the host view controller, network layer, and game details endpoint. It also calls the getGameDetails() method to fetch the game data.
+ Methods:
+ setupUI(): Sets up the UI with the game information. It updates the game name label, game description label, and game image asynchronously.
+ loadDescription(): Loads the full description of the game. It adjusts the label height and number of lines to show the complete description when the "Read More" button is tapped.
+ isGameInFavorites(): Checks if the game is in the favorites list. It retrieves the game data from the Core Data manager and returns true if the game is favorited, false otherwise.
+
+ */
+
 class GameDetailsViewModel {
 
     /// The view controller that owns the view model.
