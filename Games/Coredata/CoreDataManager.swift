@@ -159,7 +159,7 @@ class CoreDataManager {
     }
 
     // Retrieve the list of GameDataModel objects from Core Data
-    func fetchFavoritedGames() -> [GameDataModel] {
+    func fetchFavoritedGamesModels() -> [GameDataModel] {
         let fetchRequest: NSFetchRequest<GameDataEntity> = GameDataEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "favourite == true")
         do {
