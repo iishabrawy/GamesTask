@@ -27,3 +27,21 @@ protocol Endpoint {
     /// The query parameters to be included in the request URL.
     var queryParameters: [String: String]? { get }
 }
+
+extension Endpoint {
+    var baseURL: String {
+        get { return GamesEnvironment.apiRootURL.absoluteString }
+    }
+
+    var httpMethod: HTTPMethod {
+        get { return .get }
+    }
+
+    var headers: [String: String] {
+        get { return ["Content-Type": "application/json"] }
+    }
+
+    var parameters: [String: Any]? {
+        get { return nil }
+    }
+}

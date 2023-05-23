@@ -48,18 +48,13 @@ class GameDetailsVC: UIViewController {
 
         setupNavigationItems()
         configureGestureRecognizers()
+        changeLayoutFromOneColumnToTwoColumns()
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
 
-        if traitCollection.verticalSizeClass == .compact {
-            // Landscape mode, double column layout
-            columnsStack.axis = .horizontal
-        } else {
-            // Portrait mode, single column layout
-            columnsStack.axis = .vertical
-        }
+        changeLayoutFromOneColumnToTwoColumns()
     }
 
     // MARK: - Setup
@@ -82,6 +77,19 @@ class GameDetailsVC: UIViewController {
     func configureGestureRecognizers() {
         redditView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openReddit)))
         websiteView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openWebsite)))
+    }
+
+    func changeLayoutFromOneColumnToTwoColumns() {
+        UIView.animate(withDuration: 0.01) { [weak self] in
+            if self?.traitCollection.verticalSizeClass == .compact {
+                // Landscape mode, double column layout
+                self?.columnsStack.axis = .horizontal
+            } else {
+                // Portrait mode, single column layout
+                self?.columnsStack.axis = .vertical
+            }
+            self?.view.layoutIfNeeded()
+        }
     }
 
     // MARK: - Actions
