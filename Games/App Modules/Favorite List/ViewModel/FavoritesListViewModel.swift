@@ -39,7 +39,7 @@ class FavoritesListViewModel {
         didSet {
             DispatchQueue.main.async {
                 self.hostVC?.gamesTableView.reloadData()
-                self.hostVC?.title = self.allGamesList.count > 0 ?
+                self.hostVC?.navigationItem.title = self.allGamesList.count > 0 ?
                 "Favorites (\(self.allGamesList.count))" : "Favorites"
             }
         }

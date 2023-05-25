@@ -11,8 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavoritesListVC" customModule="Games" customModuleProvider="target">
             <connections>
-                <outlet property="gamesTableView" destination="Www-bi-x5i" id="Cch-23-7uT"/>
-                <outlet property="searchBar" destination="rmF-lt-KO8" id="pYw-2H-SJc"/>
+                <outlet property="gamesTableView" destination="Www-bi-x5i" id="3Gb-oa-Sky"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,12 +23,8 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HeD-qU-7uK">
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
-                        <searchBar contentMode="redraw" placeholder="Search for the games" translatesAutoresizingMaskIntoConstraints="NO" id="rmF-lt-KO8">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Www-bi-x5i">
-                            <rect key="frame" x="0.0" y="56" width="393" height="703"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
                             <color key="backgroundColor" name="bgColor"/>
                         </tableView>
                     </subviews>
