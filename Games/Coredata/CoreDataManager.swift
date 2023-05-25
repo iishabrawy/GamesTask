@@ -51,7 +51,7 @@ class CoreDataManager {
                         gamesModelEntity.rating = gameModel.rating ?? 0.0
                         gamesModelEntity.metacritic = gameModel.metacritic ?? 0.0
                         gamesModelEntity.gameDescription = gameModel.description ?? ""
-                        gamesModelEntity.favourite = gameModel.favorite ?? false
+                        gamesModelEntity.favourite = gameModel.favorite
                         gamesModelEntity.redditUrl = gameModel.redditUrl
                         gamesModelEntity.redditName = gameModel.redditName
                         gamesModelEntity.website = gameModel.website
@@ -266,7 +266,7 @@ class CoreDataManager {
             gameDataEntity.rating = attributes.rating ?? gameDataEntity.rating
             gameDataEntity.metacritic = attributes.metacritic ?? gameDataEntity.metacritic
             gameDataEntity.gameDescription = attributes.description ?? gameDataEntity.gameDescription
-            gameDataEntity.favourite = attributes.favorite ?? gameDataEntity.favourite
+            gameDataEntity.favourite = attributes.favorite
             gameDataEntity.redditUrl = attributes.redditUrl ?? gameDataEntity.redditUrl
             gameDataEntity.redditName = attributes.redditName ?? gameDataEntity.redditName
             gameDataEntity.website = attributes.website ?? gameDataEntity.website
